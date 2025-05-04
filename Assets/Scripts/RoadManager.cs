@@ -5,12 +5,13 @@ using UnityEngine.Pool;
 
 public class RoadManager : MonoBehaviour
 {
-    public static RoadManager Instance;
+    public static RoadManager Instance { get; private set; }
 
 
     [SerializeField] private List<GameObject> pooledObjects;
     [SerializeField] private GameObject objectToPool;
     [SerializeField] private int amountToPool = 3;
+    [SerializeField] private float moveSpeed = 5f;
 
     void Awake()
     {
@@ -43,5 +44,10 @@ public class RoadManager : MonoBehaviour
         gameObject.SetActive(false);
         pooledObjects.Add(gameObject);
         return gameObject;
+    }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
     }
 }

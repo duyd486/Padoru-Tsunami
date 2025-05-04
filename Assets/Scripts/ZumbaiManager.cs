@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ZumbaiManager : MonoBehaviour
 {
+    public static ZumbaiManager Instance { get; private set; }
+
     [SerializeField] private List<Zumbai> zumbaiList;
     [SerializeField] private GameObject zumbaiPref;
     [SerializeField] private float jumpDelay = 0.1f;
@@ -14,6 +16,11 @@ public class ZumbaiManager : MonoBehaviour
         JumpPress,
         JumpHold,
         JumpRelease,
+    }
+
+    private void Awake()
+    {
+        Instance = this;
     }
 
     private void Start()
@@ -73,7 +80,7 @@ public class ZumbaiManager : MonoBehaviour
         zumbaiList = zumbaiList.OrderByDescending(Zumbai => Zumbai.transform.position.x).ToList();
     }
 
-    private void AddZumbai()
+    public void AddZumbai()
     {
         GameObject zumbaiOb = Instantiate(zumbaiPref, transform);
         Zumbai zumbai = zumbaiOb.GetComponent<Zumbai>();

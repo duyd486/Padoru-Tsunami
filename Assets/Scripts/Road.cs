@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Road : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
 
 
     void Update()
     {
-        transform.position -= new Vector3(moveSpeed * Time.deltaTime, 0, 0);
+        transform.position -= new Vector3(RoadManager.Instance.GetMoveSpeed() * Time.deltaTime, 0, 0);
         if(transform.position.x <= -80)
         {
             gameObject.SetActive(false);
