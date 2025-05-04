@@ -10,15 +10,12 @@ public class Road : MonoBehaviour
     void Update()
     {
         transform.position -= new Vector3(moveSpeed * Time.deltaTime, 0, 0);
-        if(transform.position.x < -40)
+        if(transform.position.x <= -80)
         {
             gameObject.SetActive(false);
             GameObject road = RoadManager.Instance.GetPooledObject();
-            if(road != null)
-            {
-                road.transform.position = new Vector3(40,0,0);
-                road.SetActive(true);
-            }
+            road.transform.position = new Vector3(80, 0, 0);
+            road.SetActive(true);
         }
     }
 }

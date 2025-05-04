@@ -8,7 +8,7 @@ public class RoadManager : MonoBehaviour
     public static RoadManager Instance;
 
 
-    private List<GameObject> pooledObjects;
+    [SerializeField] private List<GameObject> pooledObjects;
     [SerializeField] private GameObject objectToPool;
     [SerializeField] private int amountToPool = 3;
 
@@ -23,7 +23,7 @@ public class RoadManager : MonoBehaviour
         GameObject tmp;
         for (int i = 0; i < amountToPool; i++)
         {
-            tmp = Instantiate(objectToPool);
+            tmp = Instantiate(objectToPool, transform);
             tmp.SetActive(false);
             pooledObjects.Add(tmp);
         }
@@ -31,13 +31,17 @@ public class RoadManager : MonoBehaviour
 
     public GameObject GetPooledObject()
     {
-        for (int i = 0; i < amountToPool; i++)
+        for (int i = 0; i < pooledObjects.Count; i++)
         {
             if (!pooledObjects[i].activeInHierarchy)
             {
                 return pooledObjects[i];
             }
         }
-        return null;
+        GameObject gameObject;
+        gameObject = Instantiate(objectToPool, transform);
+        gameObject.SetActive(false);
+        pooledObjects.Add(gameObject);
+        return gameObject;
     }
 }
