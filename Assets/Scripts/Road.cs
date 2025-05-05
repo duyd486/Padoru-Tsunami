@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Road : MonoBehaviour
 {
-
-
     void Update()
     {
         transform.position -= new Vector3(RoadManager.Instance.GetMoveSpeed() * Time.deltaTime, 0, 0);

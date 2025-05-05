@@ -9,7 +9,7 @@ public class RoadManager : MonoBehaviour
 
 
     [SerializeField] private List<GameObject> pooledObjects;
-    [SerializeField] private GameObject objectToPool;
+    [SerializeField] private GameObject roadPref;
     [SerializeField] private int amountToPool = 3;
     [SerializeField] private float moveSpeed = 5f;
 
@@ -24,7 +24,7 @@ public class RoadManager : MonoBehaviour
         GameObject tmp;
         for (int i = 0; i < amountToPool; i++)
         {
-            tmp = Instantiate(objectToPool, transform);
+            tmp = Instantiate(roadPref, transform);
             tmp.SetActive(false);
             pooledObjects.Add(tmp);
         }
@@ -40,7 +40,7 @@ public class RoadManager : MonoBehaviour
             }
         }
         GameObject gameObject;
-        gameObject = Instantiate(objectToPool, transform);
+        gameObject = Instantiate(roadPref, transform);
         gameObject.SetActive(false);
         pooledObjects.Add(gameObject);
         return gameObject;

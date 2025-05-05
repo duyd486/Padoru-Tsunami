@@ -77,7 +77,7 @@ MonoBehaviour:
   jumpForce: 600
   defaultDrag: 1
   onHoldDrag: 5
-  jumpCheck: 2
+  jumpCheck: 1
 --- !u!1 &2953326551585134738
 GameObject:
   m_ObjectHideFlags: 0

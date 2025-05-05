@@ -7,7 +7,7 @@ public class ZumbaiManager : MonoBehaviour
 {
     public static ZumbaiManager Instance { get; private set; }
 
-    [SerializeField] private List<Zumbai> zumbaiList;
+    [SerializeField] private List<GameObject> zumbaiList;
     [SerializeField] private GameObject zumbaiPref;
     [SerializeField] private float jumpDelay = 0.1f;
 
@@ -31,7 +31,7 @@ public class ZumbaiManager : MonoBehaviour
 
         GameInput.Instance.OnTestPress += GameInput_OnTestPress;
 
-        zumbaiList = new List<Zumbai>();
+        zumbaiList = new List<GameObject>();
         AddZumbai();
     }
 
@@ -56,19 +56,19 @@ public class ZumbaiManager : MonoBehaviour
     private IEnumerator TriggerJump(Jump jump)
     {
         SortZumbai();
-        foreach (Zumbai zumbai in zumbaiList)
+        foreach (GameObject zumbai in zumbaiList)
         {
             switch (jump)
             {
                 default:
                 case Jump.JumpPress:
-                    zumbai.JumpPress();
+                    zumbai.GetComponent<Zumbai>().JumpPress();
                     break;
                 case Jump.JumpHold:
-                    zumbai.JumpHold();
+                    zumbai.GetComponent<Zumbai>().JumpHold();
                     break;
                 case Jump.JumpRelease:
-                    zumbai.JumpRelease();
+                    zumbai.GetComponent<Zumbai>().JumpRelease();
                     break;
             }
             yield return new WaitForSeconds(jumpDelay);
@@ -83,8 +83,15 @@ public class ZumbaiManager : MonoBehaviour
     public void AddZumbai()
     {
         GameObject zumbaiOb = Instantiate(zumbaiPref, transform);
-        Zumbai zumbai = zumbaiOb.GetComponent<Zumbai>();
-        zumbaiList.Add(zumbai);
-        zumbaiOb.transform.position = new Vector3(Random.Range(-10f, 10f), 10, Random.Range(-5f, 5f));
+        zumbaiList.Add(zumbaiOb);
+        zumbaiOb.transform.position = new Vector3(Random.Range(-10.0f, 15.0f), 10f, Random.Range(-5.0f, 5.0f));
+    }
+    public void RemoveZumbai()
+    {
+
+    }
+    public int GetZumbaiCount()
+    {
+        return zumbaiList.Count;
     }
 }

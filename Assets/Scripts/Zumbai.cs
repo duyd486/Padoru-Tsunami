@@ -30,10 +30,17 @@ public class Zumbai : MonoBehaviour
         {
             Debug.Log("Hit something");
             Hoomen hoomen = hit.collider.GetComponentInParent<Hoomen>();
+            Bomb bomb = hit.collider.GetComponentInParent<Bomb>();
             if (hoomen != null)
             {
                 hoomen.Die();
                 ZumbaiManager.Instance.AddZumbai();
+            }
+            if(bomb != null)
+            {
+                bomb.Die();
+                ZumbaiManager.Instance.RemoveZumbai();
+                Die();
             }
         }
         Debug.DrawRay(transform.position, Vector3.right, Color.red);
@@ -61,5 +68,6 @@ public class Zumbai : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
+        ZumbaiManager.Instance.RemoveZumbai();
     }
 }
