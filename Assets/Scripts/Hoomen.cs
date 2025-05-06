@@ -11,7 +11,6 @@ public class Hoomen : MonoBehaviour
         if (transform.position.x <= -80)
         {
             Die();
-            ItemsManager.Instance.SpawnItems();
         }
     }
 

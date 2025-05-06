@@ -4,9 +4,29 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+    [SerializeField] private bool isPlaying;
+    [SerializeField] private float difficultyTimer;
+    [SerializeField] private float difficultyTimerMax = 20f;
+
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+
     void Start()
     {
         Time.timeScale = 2;
+        isPlaying = true;
     }
 
+
+
+    public bool GetIsPlaying()
+    {
+        return isPlaying;
+    }
 }

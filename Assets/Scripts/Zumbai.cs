@@ -31,6 +31,7 @@ public class Zumbai : MonoBehaviour
             Debug.Log("Hit something");
             Hoomen hoomen = hit.collider.GetComponentInParent<Hoomen>();
             Bomb bomb = hit.collider.GetComponentInParent<Bomb>();
+            
             if (hoomen != null)
             {
                 hoomen.Die();
@@ -48,13 +49,22 @@ public class Zumbai : MonoBehaviour
 
     public void JumpPress()
     {
-        canJump = Physics.Raycast(transform.position, Vector3.down, jumpCheck);
+        RaycastHit hit;
+        canJump = Physics.Raycast(transform.position, Vector3.down, out hit, jumpCheck);
         Debug.DrawRay(transform.position, Vector3.down * jumpCheck);
         rb.drag = defaultDrag;
         if (canJump)
         {
             rb.AddForce(new Vector3(0, jumpForce));
+            Zumbai zumbai = hit.collider.GetComponentInParent<Zumbai>();
+            if (zumbai != null)
+            {
+                Debug.Log("I fall in a Zumbai!!!");
+                rb.AddForce(Vector3.left * 100f);
+            }
         }
+
+
     }
     public void JumpHold()
     {

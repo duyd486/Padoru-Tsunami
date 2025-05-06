@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canJump: 0
-  jumpForce: 600
+  jumpForce: 700
   defaultDrag: 1
   onHoldDrag: 5
   jumpCheck: 1

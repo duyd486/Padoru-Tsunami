@@ -10,7 +10,6 @@ public class Bomb : MonoBehaviour
         if (transform.position.x <= -80)
         {
             Die();
-            ItemsManager.Instance.SpawnItems();
         }
     }
 

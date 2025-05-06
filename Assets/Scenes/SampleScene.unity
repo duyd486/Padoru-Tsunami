@@ -410,13 +410,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.056371853, y: -0, z: -0, w: 0.99840987}
-  m_LocalPosition: {x: 0, y: 4.35, z: -9.25}
+  m_LocalRotation: {x: -0.030800203, y: 0, z: 0, w: 0.99952555}
+  m_LocalPosition: {x: 0, y: 4.9, z: -14.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 6.463, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.53, y: 0, z: 0}
 --- !u!1 &984668574
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +679,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a09065273dd0764092043b351bca87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaying: 0
+  difficultyTimer: 0
+  difficultyTimerMax: 20
 --- !u!4 &1872330416
 Transform:
   m_ObjectHideFlags: 0
@@ -775,12 +778,10 @@ MonoBehaviour:
   itemsList:
   - {fileID: 4285938322574607159, guid: 83b73f11c9dc80e46a4dd19fe4ff15df, type: 3}
   - {fileID: 7747368953662460578, guid: 1b116c7f11489c2479f75c2613faed40, type: 3}
-  - {fileID: 7747368953662460578, guid: 1b116c7f11489c2479f75c2613faed40, type: 3}
-  - {fileID: 7747368953662460578, guid: 1b116c7f11489c2479f75c2613faed40, type: 3}
-  - {fileID: 7747368953662460578, guid: 1b116c7f11489c2479f75c2613faed40, type: 3}
-  - {fileID: 7747368953662460578, guid: 1b116c7f11489c2479f75c2613faed40, type: 3}
   itemsPool: []
-  numberOfItem: 5
+  numberOfItem: 6
+  accelerationTimer: 0
+  accelerationTimerMax: 10
 --- !u!4 &2096211541
 Transform:
   m_ObjectHideFlags: 0
