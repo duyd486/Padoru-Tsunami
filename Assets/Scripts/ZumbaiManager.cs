@@ -10,6 +10,7 @@ public class ZumbaiManager : MonoBehaviour
     [SerializeField] private List<GameObject> zumbaiList;
     [SerializeField] private GameObject zumbaiPref;
     [SerializeField] private float jumpDelay = 0.1f;
+    [SerializeField] private Transform centerOfBoids;
 
     enum Jump
     {
@@ -34,6 +35,7 @@ public class ZumbaiManager : MonoBehaviour
         zumbaiList = new List<GameObject>();
         AddZumbai();
     }
+
 
     private void GameInput_OnTestPress(object sender, System.EventArgs e)
     {
@@ -94,5 +96,9 @@ public class ZumbaiManager : MonoBehaviour
     public int GetZumbaiCount()
     {
         return zumbaiList.Count;
+    }
+    public Vector3 GetCenterOfBoids()
+    {
+        return centerOfBoids.position;
     }
 }

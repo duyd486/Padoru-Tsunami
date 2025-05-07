@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    [SerializeField] private bool isPlaying;
+    [SerializeField] private bool isPlaying = false;
     [SerializeField] private float difficultyTimer;
     [SerializeField] private float difficultyTimerMax = 20f;
 
@@ -20,10 +20,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 2;
-        isPlaying = true;
     }
 
-
+    private void Update()
+    {
+        
+    }
 
     public bool GetIsPlaying()
     {
