@@ -13,8 +13,7 @@ public class Zumbai : MonoBehaviour
 
 
     private float neighborRadius = 2.5f;
-    private float separationDistance = 2f;
-    [SerializeField] private float moveForce = 8f;
+    private float separationDistance = 1.5f;
 
 
 
@@ -43,22 +42,6 @@ public class Zumbai : MonoBehaviour
         Vector3 steer = Vector3.zero;
 
         int count = 0;
-
-        //foreach (GameObject neighbor in neighbors)
-        //{
-        //    if (neighbor == transform) continue;
-
-        //    Vector3 toNeighbor = neighbor.transform.position - transform.position;
-        //    float distance = toNeighbor.magnitude;
-
-        //    alignment += neighbor.GetComponentInParent<GameObject>().transform.position;
-
-        //    if (distance < separationDistance)
-        //    {
-        //        separation -= toNeighbor / distance;
-        //    }
-        //    count++;
-        //}
         foreach(GameObject neighbor in neighbors)
         {
             if (neighbor == gameObject) continue;
@@ -75,29 +58,16 @@ public class Zumbai : MonoBehaviour
 
         if(count > 0)
         {
-            steer += separation * .2f;
+            steer += separation * 0.085f;
             alignment = (alignment / count).normalized;
         }
-        steer += cohesion * 0.1f;
-        steer += alignment * .1f;
+        steer += cohesion * 0.08f;
+        steer += alignment * 0.1f;
 
         if (isGrounded)
         {
             rb.velocity += steer;
         }
-
-
-        //if (count > 0)
-        //{
-        //    alignment = (alignment / count).normalized;
-
-        //    cohesion = (ZumbaiManager.Instance.GetCenterOfBoids() - transform.position).normalized;
-
-        //    Vector3 steer = alignment
-        //                  + cohesion
-        //                  + separation;
-        //}
-
     }
 
     private List<GameObject> GetNeighbors()

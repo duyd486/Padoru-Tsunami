@@ -73,8 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d494eb1ad108b634e8b7f8dd5ee669af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canJump: 0
-  jumpForce: 700
+  isGrounded: 0
+  jumpForce: 1000
   defaultDrag: 1
   onHoldDrag: 5
   jumpCheck: 1

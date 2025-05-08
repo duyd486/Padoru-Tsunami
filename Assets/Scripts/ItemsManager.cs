@@ -9,7 +9,7 @@ public class ItemsManager : MonoBehaviour
     public static ItemsManager Instance {  get; private set; }
     private List<int> itemsXLocation = new List<int>
     {
-        120, 150, 180, 210, 240
+        80, 120, 160, 200, 240, 280
     };
     [SerializeField] private List<GameObject> itemsList = new List<GameObject>(); 
     [SerializeField] private List<GameObject> itemsPool;
@@ -18,10 +18,16 @@ public class ItemsManager : MonoBehaviour
     [SerializeField] private float accelerationTimerMax = 6f;
 
 
-    private void Start()
+
+    private void Awake()
     {
         Instance = this;
+    }
+    private void Start()
+    {
         itemsPool = new List<GameObject>();
+        accelerationTimer = accelerationTimerMax;
+        SpawnDefault();
     }
 
 
@@ -41,6 +47,20 @@ public class ItemsManager : MonoBehaviour
         }
     }
 
+    private void SpawnDefault()
+    {
+        foreach(GameObject itemInList in itemsList)
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                GameObject item;
+                item = Instantiate(itemInList, transform);
+                item.SetActive(false);
+                itemsPool.Add(item);
+            }
+
+        }
+    }
 
     public GameObject GetPooledObject()
     {
@@ -51,11 +71,11 @@ public class ItemsManager : MonoBehaviour
                 return itemsPool[i];
             }
         }
-        GameObject gameObject;
-        gameObject = Instantiate(itemsList[UnityEngine.Random.Range(0, itemsList.Count)], transform);
-        gameObject.SetActive(false);
-        itemsPool.Add(gameObject);
-        return gameObject;
+        GameObject item;
+        item = Instantiate(itemsList[UnityEngine.Random.Range(0, itemsList.Count)], transform);
+        item.SetActive(false);
+        itemsPool.Add(item);
+        return item;
     }
 
     public void SpawnItems()
