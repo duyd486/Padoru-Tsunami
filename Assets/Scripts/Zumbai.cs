@@ -5,16 +5,16 @@ using UnityEngine;
 public class Zumbai : MonoBehaviour
 {
     private Rigidbody rb;
-    private Transform childrenTransform;
-    [SerializeField] private bool canJump;
+    [SerializeField] private bool isGrounded;
     [SerializeField] private float jumpForce = 500f;
     [SerializeField] private float defaultDrag = 1;
     [SerializeField] private float onHoldDrag = 5;
     [SerializeField] private float jumpCheck = 1f;
 
 
-    [SerializeField] private float neighborRadius = 2f;
-    [SerializeField] private float separationDistance = 2f;
+    private float neighborRadius = 2.5f;
+    private float separationDistance = 2f;
+    [SerializeField] private float moveForce = 8f;
 
 
 
@@ -24,67 +24,106 @@ public class Zumbai : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        childrenTransform = GetComponentInChildren<Transform>();
     }
 
     private void Update()
     {
         Interact();
         BoidsMovement();
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, jumpCheck);
     }
 
 
     private void BoidsMovement()
     {
-        List<Transform> neighbors = GetNeighbors();
+        List<GameObject> neighbors = GetNeighbors();
         Vector3 alignment = Vector3.zero;
         Vector3 separation = Vector3.zero;
         Vector3 cohesion = Vector3.zero;
+        Vector3 steer = Vector3.zero;
 
         int count = 0;
 
-        foreach (Transform neighbor in neighbors)
+        //foreach (GameObject neighbor in neighbors)
+        //{
+        //    if (neighbor == transform) continue;
+
+        //    Vector3 toNeighbor = neighbor.transform.position - transform.position;
+        //    float distance = toNeighbor.magnitude;
+
+        //    alignment += neighbor.GetComponentInParent<GameObject>().transform.position;
+
+        //    if (distance < separationDistance)
+        //    {
+        //        separation -= toNeighbor / distance;
+        //    }
+        //    count++;
+        //}
+        foreach(GameObject neighbor in neighbors)
         {
-            if (neighbor == transform) continue;
-
-            Vector3 toNeighbor = neighbor.position - transform.position;
-            float distance = toNeighbor.magnitude;
-
-            alignment += neighbor.GetComponentInParent<Zumbai>().transform.position;
-
-            if (distance < separationDistance)
+            if (neighbor == gameObject) continue;
+            float distance = (neighbor.transform.position - transform.position).magnitude;
+            if(distance < separationDistance)
             {
-                separation -= toNeighbor / distance;
+                separation -= (neighbor.transform.position - transform.position) / distance;
             }
+            alignment += neighbor.transform.position;
             count++;
         }
-        if (count > 0)
+
+        cohesion = isGrounded ? (ZumbaiManager.Instance.GetCenterOfBoids() - transform.position).normalized : Vector3.zero;
+
+        if(count > 0)
         {
+            steer += separation * .2f;
             alignment = (alignment / count).normalized;
-
-            cohesion = (ZumbaiManager.Instance.GetCenterOfBoids() - transform.position).normalized;
-
-            Vector3 steer = alignment
-                          + cohesion
-                          + separation;
         }
+        steer += cohesion * 0.1f;
+        steer += alignment * .1f;
+
+        if (isGrounded)
+        {
+            rb.velocity += steer;
+        }
+
+
+        //if (count > 0)
+        //{
+        //    alignment = (alignment / count).normalized;
+
+        //    cohesion = (ZumbaiManager.Instance.GetCenterOfBoids() - transform.position).normalized;
+
+        //    Vector3 steer = alignment
+        //                  + cohesion
+        //                  + separation;
+        //}
 
     }
 
-    private List<Transform> GetNeighbors()
+    private List<GameObject> GetNeighbors()
     {
-        List<Transform> neighbors = new List<Transform>();
-        Collider[] hits = Physics.OverlapSphere(transform.position, neighborRadius);
-
-        foreach (var hit in hits)
+        List<GameObject> neighbors = new List<GameObject>();
+        foreach(GameObject zumbaiOb in ZumbaiManager.Instance.GetListZumbai())
         {
-            if (hit.transform != childrenTransform && hit.GetComponentInParent<Zumbai>() != null)
+            if(zumbaiOb != this && (zumbaiOb.transform.position - transform.position).magnitude <= neighborRadius)
             {
-                neighbors.Add(hit.transform);
+                neighbors.Add(zumbaiOb);
             }
         }
-        Debug.Log(neighbors.Count);
         return neighbors;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, neighborRadius);
+        foreach(GameObject zumbaiOb in GetNeighbors())
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, zumbaiOb.transform.position);
+        }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, Vector3.down * jumpCheck);
     }
 
 
@@ -113,21 +152,12 @@ public class Zumbai : MonoBehaviour
 
     public void JumpPress()
     {
-        RaycastHit hit;
-        canJump = Physics.Raycast(transform.position, Vector3.down, out hit, jumpCheck);
         Debug.DrawRay(transform.position, Vector3.down * jumpCheck);
         rb.drag = defaultDrag;
-        if (canJump)
+        if (isGrounded)
         {
             rb.AddForce(new Vector3(0, jumpForce));
-            Zumbai zumbai = hit.collider.GetComponentInParent<Zumbai>();
-            if (zumbai != null)
-            {
-                rb.AddForce(Vector3.left * 100f);
-            }
         }
-
-
     }
     public void JumpHold()
     {
