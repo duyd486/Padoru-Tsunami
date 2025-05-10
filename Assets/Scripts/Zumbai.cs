@@ -7,6 +7,7 @@ public class Zumbai : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private bool isGrounded;
     [SerializeField] private float jumpForce = 500f;
+    [SerializeField] private float fallForce = 200f;
     [SerializeField] private float defaultDrag = 1;
     [SerializeField] private float onHoldDrag = 5;
     [SerializeField] private float jumpCheck = 1f;
@@ -14,11 +15,6 @@ public class Zumbai : MonoBehaviour
 
     private float neighborRadius = 2.5f;
     private float separationDistance = 1.5f;
-
-
-
-
-
 
     private void Start()
     {
@@ -96,7 +92,6 @@ public class Zumbai : MonoBehaviour
         Gizmos.DrawLine(transform.position, Vector3.down * jumpCheck);
     }
 
-
     private void Interact()
     {
         RaycastHit hit;
@@ -109,12 +104,14 @@ public class Zumbai : MonoBehaviour
             {
                 hoomen.Die();
                 ZumbaiManager.Instance.AddZumbai();
+                Debug.Log("Human");
             }
             if(bomb != null)
             {
                 bomb.Die();
                 ZumbaiManager.Instance.RemoveZumbai();
                 Die();
+                Debug.Log("Bomb");
             }
         }
         Debug.DrawRay(transform.position, Vector3.right, Color.red);

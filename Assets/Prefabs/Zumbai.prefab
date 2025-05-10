@@ -43,7 +43,7 @@ Rigidbody:
   m_GameObject: {fileID: 620461241813115672}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -75,7 +75,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   jumpForce: 1000
-  defaultDrag: 1
+  fallForce: 200
+  defaultDrag: 0
   onHoldDrag: 5
   jumpCheck: 1
 --- !u!1 &2953326551585134738

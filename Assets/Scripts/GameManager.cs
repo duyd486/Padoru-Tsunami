@@ -8,14 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isPlaying = false;
     [SerializeField] private float difficultyTimer;
     [SerializeField] private float difficultyTimerMax = 20f;
-
-
+    [SerializeField] private float gameSpeed = 5f;
 
     private void Awake()
     {
         Instance = this;
     }
-
 
     void Start()
     {
@@ -24,11 +22,25 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+        difficultyTimer += Time.deltaTime;
+        if(difficultyTimer > difficultyTimerMax)
+        {
+            difficultyTimer = 0;
+            UpLevel();
+        }
+    }
+
+    private void UpLevel()
+    {
+        gameSpeed += 1;
     }
 
     public bool GetIsPlaying()
     {
         return isPlaying;
+    }
+    public float GetGameSpeed()
+    {
+        return gameSpeed;
     }
 }

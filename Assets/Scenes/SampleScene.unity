@@ -351,7 +351,7 @@ Transform:
   m_GameObject: {fileID: 733968975}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 2.13, z: 0}
+  m_LocalPosition: {x: -5, y: 2.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -714,6 +714,7 @@ MonoBehaviour:
   isPlaying: 0
   difficultyTimer: 0
   difficultyTimerMax: 20
+  gameSpeed: 5
 --- !u!4 &1872330416
 Transform:
   m_ObjectHideFlags: 0
@@ -810,10 +811,13 @@ MonoBehaviour:
   itemsList:
   - {fileID: 4285938322574607159, guid: 83b73f11c9dc80e46a4dd19fe4ff15df, type: 3}
   - {fileID: 7747368953662460578, guid: 1b116c7f11489c2479f75c2613faed40, type: 3}
+  - {fileID: 3723012793732812761, guid: 45a5714eaad78554a95a73102bd5a373, type: 3}
+  - {fileID: 5331976895067890141, guid: feb7b431a09240a4887df3b7c39dcf1c, type: 3}
+  - {fileID: 8909513276537215536, guid: 849ee2b8e1e12cc4097305b267b421e8, type: 3}
   itemsPool: []
   numberOfItem: 6
-  accelerationTimer: 0
-  accelerationTimerMax: 40
+  accelerationTimer: 10
+  accelerationTimerMax: 10
 --- !u!4 &2096211541
 Transform:
   m_ObjectHideFlags: 0

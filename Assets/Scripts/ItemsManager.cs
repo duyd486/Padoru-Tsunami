@@ -1,16 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class ItemsManager : MonoBehaviour
 {
     public static ItemsManager Instance {  get; private set; }
-    private List<int> itemsXLocation = new List<int>
-    {
-        80, 120, 160, 200, 240, 280
-    };
     [SerializeField] private List<GameObject> itemsList = new List<GameObject>(); 
     [SerializeField] private List<GameObject> itemsPool;
     [SerializeField] private int numberOfItem = 1;
@@ -39,10 +36,7 @@ public class ItemsManager : MonoBehaviour
             if(accelerationTimer <= 0f)
             {
                 accelerationTimer = accelerationTimerMax;
-                for (int i = 0; i < numberOfItem; i++)
-                {
-                    SpawnItems();
-                }
+                SpawnItems();
             }
         }
     }
@@ -64,7 +58,7 @@ public class ItemsManager : MonoBehaviour
 
     public GameObject GetPooledObject()
     {
-        for (int i = 0; i < itemsPool.Count; i++)
+        for (int i = UnityEngine.Random.Range(0, itemsPool.Count); i < itemsPool.Count; i = UnityEngine.Random.Range(0, itemsPool.Count))
         {
             if (!itemsPool[i].activeInHierarchy)
             {
@@ -81,7 +75,7 @@ public class ItemsManager : MonoBehaviour
     public void SpawnItems()
     {
         GameObject item = GetPooledObject();
-        item.transform.position = new Vector3(itemsXLocation[UnityEngine.Random.Range(0,itemsXLocation.Count)],0,0);
+        item.transform.position = new Vector3(240,0,0);
         item.SetActive(true);
     }
 }

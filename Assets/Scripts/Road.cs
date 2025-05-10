@@ -6,7 +6,7 @@ public class Road : MonoBehaviour
 {
     void Update()
     {
-        transform.position -= new Vector3(RoadManager.Instance.GetMoveSpeed() * Time.deltaTime, 0, 0);
+        transform.position -= new Vector3(GameManager.Instance.GetGameSpeed() * Time.deltaTime, 0, 0);
         if(transform.position.x <= -80)
         {
             gameObject.SetActive(false);
