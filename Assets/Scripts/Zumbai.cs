@@ -11,10 +11,11 @@ public class Zumbai : MonoBehaviour
     [SerializeField] private float defaultDrag = 1;
     [SerializeField] private float onHoldDrag = 5;
     [SerializeField] private float jumpCheck = 1f;
+    [SerializeField] private float gravityScale = 3;
 
 
-    private float neighborRadius = 2.5f;
-    private float separationDistance = 1.5f;
+    [SerializeField] private float neighborRadius = 2.5f;
+    [SerializeField] private float separationDistance = 1.5f;
 
     private void Start()
     {
@@ -23,13 +24,16 @@ public class Zumbai : MonoBehaviour
 
     private void Update()
     {
-        Interact();
-        BoidsMovement();
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, jumpCheck);
+        HandleInteract();
+        HandleJump();
+        if (isGrounded)
+        {
+            HandleBoidsMovement();
+        }
     }
 
 
-    private void BoidsMovement()
+    private void HandleBoidsMovement()
     {
         List<GameObject> neighbors = GetNeighbors();
         Vector3 alignment = Vector3.zero;
@@ -54,15 +58,15 @@ public class Zumbai : MonoBehaviour
 
         if(count > 0)
         {
-            steer += separation * 0.085f;
+            steer += separation * 0.04f;
             alignment = (alignment / count).normalized;
         }
-        steer += cohesion * 0.08f;
-        steer += alignment * 0.1f;
+        steer += cohesion * 0.03f;
+        steer += alignment * 0.035f;
 
         if (isGrounded)
         {
-            rb.velocity += steer;
+            rb.velocity += steer * gravityScale;
         }
     }
 
@@ -92,7 +96,7 @@ public class Zumbai : MonoBehaviour
         Gizmos.DrawLine(transform.position, Vector3.down * jumpCheck);
     }
 
-    private void Interact()
+    private void HandleInteract()
     {
         RaycastHit hit;
         if(Physics.Raycast(transform.position, Vector3.right, out hit, 1f))
@@ -104,17 +108,29 @@ public class Zumbai : MonoBehaviour
             {
                 hoomen.Die();
                 ZumbaiManager.Instance.AddZumbai();
-                Debug.Log("Human");
             }
             if(bomb != null)
             {
                 bomb.Die();
                 ZumbaiManager.Instance.RemoveZumbai();
                 Die();
-                Debug.Log("Bomb");
             }
         }
         Debug.DrawRay(transform.position, Vector3.right, Color.red);
+    }
+
+    private void HandleJump()
+    {
+        RaycastHit hit;
+        isGrounded = Physics.Raycast(transform.position, Vector3.down,out hit, jumpCheck);
+        if (isGrounded)
+        {
+            Zumbai zumbai = hit.collider.GetComponentInParent<Zumbai>();
+            if(zumbai != null)
+            {
+                rb.AddForce(Vector3.left * 20f);
+            }
+        }
     }
 
     public void JumpPress()
@@ -133,6 +149,7 @@ public class Zumbai : MonoBehaviour
     public void JumpRelease()
     {
         rb.drag = defaultDrag;
+        rb.AddForce(new Vector3(0, -jumpForce / 5));
     }
 
     public void Die()
