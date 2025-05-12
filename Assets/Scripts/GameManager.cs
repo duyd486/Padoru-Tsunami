@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     [SerializeField] private bool isPlaying = false;
     [SerializeField] private float difficultyTimer;
-    [SerializeField] private float difficultyTimerMax = 20f;
+    [SerializeField] private float difficultyTimerMax = 10f;
     [SerializeField] private float gameSpeed = 5f;
 
     private void Awake()
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void UpLevel()
     {
-        gameSpeed += 1;
+        gameSpeed += 0.5f;
     }
 
     public bool GetIsPlaying()

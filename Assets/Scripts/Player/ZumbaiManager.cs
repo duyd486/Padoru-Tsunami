@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ZumbaiManager : MonoBehaviour
 {
     public static ZumbaiManager Instance { get; private set; }
 
-    [SerializeField] private List<GameObject> zumbaiList;
+    [SerializeField] private List<GameObject> zumbaiPool;
+    [SerializeField] private List<GameObject> zumbaiActiveList;
     [SerializeField] private GameObject zumbaiPref;
     [SerializeField] private float jumpDelay = 0.1f;
     [SerializeField] private Transform centerOfBoids;
@@ -32,10 +34,26 @@ public class ZumbaiManager : MonoBehaviour
 
         GameInput.Instance.OnTestPress += GameInput_OnTestPress;
 
-        zumbaiList = new List<GameObject>();
+        zumbaiPool = new List<GameObject>();
+        zumbaiActiveList = new List<GameObject>();
         AddZumbai();
     }
 
+    public GameObject GetPooledObject()
+    {
+        for (int i = 0; i < zumbaiPool.Count; i++)
+        {
+            if (!zumbaiPool[i].activeInHierarchy)
+            {
+                return zumbaiPool[i];
+            }
+        }
+        GameObject gameObject;
+        gameObject = Instantiate(zumbaiPref, transform);
+        gameObject.SetActive(false);
+        zumbaiPool.Add(gameObject);
+        return gameObject;
+    }
 
     private void GameInput_OnTestPress(object sender, System.EventArgs e)
     {
@@ -58,7 +76,7 @@ public class ZumbaiManager : MonoBehaviour
     private IEnumerator TriggerJump(Jump jump)
     {
         SortZumbai();
-        foreach (GameObject zumbai in zumbaiList)
+        foreach (GameObject zumbai in zumbaiActiveList)
         {
             switch (jump)
             {
@@ -79,22 +97,23 @@ public class ZumbaiManager : MonoBehaviour
 
     private void SortZumbai()
     {
-        zumbaiList = zumbaiList.OrderByDescending(Zumbai => Zumbai.transform.position.x).ToList();
+        zumbaiActiveList = zumbaiActiveList.OrderByDescending(Zumbai => Zumbai.transform.position.x).ToList();
     }
 
     public void AddZumbai()
     {
-        GameObject zumbaiOb = Instantiate(zumbaiPref, transform);
+        GameObject zumbaiOb = GetPooledObject();
         zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0,5,0);
-        zumbaiList.Add(zumbaiOb);
+        zumbaiOb.SetActive(true);
+        zumbaiActiveList.Add(zumbaiOb);
     }
-    public void RemoveZumbai()
+    public void RemoveZumbai(GameObject zumbai)
     {
-
+        zumbaiActiveList.Remove(zumbai);
     }
     public int GetZumbaiCount()
     {
-        return zumbaiList.Count;
+        return zumbaiPool.Count;
     }
     public Vector3 GetCenterOfBoids()
     {
@@ -102,6 +121,6 @@ public class ZumbaiManager : MonoBehaviour
     }
     public List<GameObject> GetListZumbai()
     {
-        return zumbaiList;
+        return zumbaiPool;
     }
 }

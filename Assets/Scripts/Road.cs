@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Road : MonoBehaviour
 {
-    void FixedUpdate()
+    void Update()
     {
-        transform.position -= new Vector3(GameManager.Instance.GetGameSpeed() * Time.deltaTime, 0, 0);
+        transform.position -= new Vector3(GameManager.Instance.GetGameSpeed(), 0, 0) * Time.deltaTime;
         if(transform.position.x <= -80)
         {
             gameObject.SetActive(false);
             GameObject road = RoadManager.Instance.GetPooledObject();
-            road.transform.position = new Vector3(80, 0, 0);
+            road.transform.position = new Vector3(transform.position.x + 160, 0, 0);
             road.SetActive(true);
         }
     }

@@ -10,7 +10,6 @@ public class ItemsManager : MonoBehaviour
     public static ItemsManager Instance {  get; private set; }
     [SerializeField] private List<GameObject> itemsList = new List<GameObject>(); 
     [SerializeField] private List<GameObject> itemsPool;
-    [SerializeField] private int numberOfItem = 1;
     [SerializeField] private float accelerationTimer = 0f;
     [SerializeField] private float accelerationTimerMax = 6f;
 

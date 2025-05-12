@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class Zumbai : MonoBehaviour
 {
-    public static event EventHandler OnJump;
 
     private Rigidbody rb;
     [SerializeField] private bool isGrounded;
     [SerializeField] private float jumpForce = 500f;
-    [SerializeField] private float fallForce = 200f;
     [SerializeField] private float defaultDrag = 1;
     [SerializeField] private float onHoldDrag = 5;
     [SerializeField] private float jumpCheck = 1f;
@@ -118,7 +116,6 @@ public class Zumbai : MonoBehaviour
             if(bomb != null)
             {
                 bomb.Die();
-                ZumbaiManager.Instance.RemoveZumbai();
                 Die();
             }
         }
@@ -161,7 +158,7 @@ public class Zumbai : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
-        ZumbaiManager.Instance.RemoveZumbai();
+        ZumbaiManager.Instance.RemoveZumbai(this.gameObject);
     }
 
     public bool GetIsGrounded()
