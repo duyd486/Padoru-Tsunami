@@ -113,6 +113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombModel
       objectReference: {fileID: 0}
+    - target: {fileID: 2245833452068230878, guid: 4e3f1e00ab1b5ad41b6fc0143b05210b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a54ef224fd738ef4da251e2d27fbc62d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 4e3f1e00ab1b5ad41b6fc0143b05210b, type: 3}

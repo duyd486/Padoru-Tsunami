@@ -85,7 +85,7 @@ public class ZumbaiManager : MonoBehaviour
     public void AddZumbai()
     {
         GameObject zumbaiOb = Instantiate(zumbaiPref, transform);
-        zumbaiOb.transform.position = new Vector3(7f, 10f, Random.Range(-3.0f, 3.0f));
+        zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0,5,0);
         zumbaiList.Add(zumbaiOb);
     }
     public void RemoveZumbai()

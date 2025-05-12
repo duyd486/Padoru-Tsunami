@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Road : MonoBehaviour
 {
-    void Update()
+    void FixedUpdate()
     {
         transform.position -= new Vector3(GameManager.Instance.GetGameSpeed() * Time.deltaTime, 0, 0);
         if(transform.position.x <= -80)

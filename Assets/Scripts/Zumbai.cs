@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Zumbai : MonoBehaviour
 {
+    public static event EventHandler OnJump;
+
     private Rigidbody rb;
     [SerializeField] private bool isGrounded;
     [SerializeField] private float jumpForce = 500f;
@@ -25,13 +28,16 @@ public class Zumbai : MonoBehaviour
     private void Update()
     {
         HandleInteract();
+
+    }
+    private void FixedUpdate()
+    {
         HandleJump();
         if (isGrounded)
         {
             HandleBoidsMovement();
         }
     }
-
 
     private void HandleBoidsMovement()
     {
@@ -61,7 +67,7 @@ public class Zumbai : MonoBehaviour
             steer += separation * 0.04f;
             alignment = (alignment / count).normalized;
         }
-        steer += cohesion * 0.03f;
+        steer += cohesion * 0.033f;
         steer += alignment * 0.035f;
 
         if (isGrounded)
@@ -99,7 +105,7 @@ public class Zumbai : MonoBehaviour
     private void HandleInteract()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, Vector3.right, out hit, 1f))
+        if(Physics.Raycast(transform.position, Vector3.right, out hit, 2f))
         {
             Hoomen hoomen = hit.collider.GetComponentInParent<Hoomen>();
             Bomb bomb = hit.collider.GetComponentInParent<Bomb>();
@@ -156,5 +162,10 @@ public class Zumbai : MonoBehaviour
     {
         gameObject.SetActive(false);
         ZumbaiManager.Instance.RemoveZumbai();
+    }
+
+    public bool GetIsGrounded()
+    {
+        return isGrounded;
     }
 }

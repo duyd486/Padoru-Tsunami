@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hoomen : MonoBehaviour
 {
 
-    private void Update()
+    private void FixedUpdate()
     {
         transform.position -= new Vector3(GameManager.Instance.GetGameSpeed() * Time.deltaTime, 0, 0);
         if (transform.position.x <= -80)
