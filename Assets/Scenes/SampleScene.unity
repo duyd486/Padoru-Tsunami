@@ -208,7 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74367c1cae54e274b8d7792f1409f713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zumbaiList: []
+  zumbaiPool: []
+  zumbaiActiveList: []
   zumbaiPref: {fileID: 620461241813115672, guid: 3e90718beda68944ab9bd6864a8ffd5f, type: 3}
   jumpDelay: 0.1
   centerOfBoids: {fileID: 733968976}
@@ -336,7 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 733968976}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -711,10 +712,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a09065273dd0764092043b351bca87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlaying: 0
+  isPlaying: 1
   difficultyTimer: 0
-  difficultyTimerMax: 20
-  gameSpeed: 50
+  difficultyTimerMax: 10
+  gameSpeed: 10
 --- !u!4 &1872330416
 Transform:
   m_ObjectHideFlags: 0
@@ -815,7 +816,6 @@ MonoBehaviour:
   - {fileID: 5331976895067890141, guid: feb7b431a09240a4887df3b7c39dcf1c, type: 3}
   - {fileID: 8909513276537215536, guid: 849ee2b8e1e12cc4097305b267b421e8, type: 3}
   itemsPool: []
-  numberOfItem: 6
   accelerationTimer: 10
   accelerationTimerMax: 10
 --- !u!4 &2096211541

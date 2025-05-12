@@ -75,7 +75,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   jumpForce: 1200
-  fallForce: 200
   defaultDrag: 0
   onHoldDrag: 7
   jumpCheck: 1.8
@@ -90,6 +89,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6865603557340281647}
     m_Modifications:
+    - target: {fileID: 47249542529795996, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1487625801479349028, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -136,6 +139,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4310370810537227340, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310370810537227340, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
+      propertyPath: m_CastShadows
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

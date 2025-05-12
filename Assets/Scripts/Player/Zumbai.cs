@@ -157,8 +157,21 @@ public class Zumbai : MonoBehaviour
 
     public void Die()
     {
-        gameObject.SetActive(false);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.black;
+        rb.AddForce(new Vector3(0, jumpForce));
+        GetComponentInChildren<CapsuleCollider>().isTrigger = true;
+
         ZumbaiManager.Instance.RemoveZumbai(this.gameObject);
+        StartCoroutine(ResetAfterFall(2f));
+
+    }
+
+    private IEnumerator ResetAfterFall(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
+        GetComponentInChildren<CapsuleCollider>().isTrigger = false;
+        gameObject.SetActive(false);
     }
 
     public bool GetIsGrounded()
