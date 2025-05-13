@@ -137,6 +137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saber
       objectReference: {fileID: 0}
+    - target: {fileID: 2711685067913366902, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4310370810537227340, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
       propertyPath: m_Enabled
       value: 1
