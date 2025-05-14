@@ -12,8 +12,6 @@ public class ZumbaiManager : MonoBehaviour
     public event EventHandler OnZumbaiAdded;
     public event EventHandler OnZumbaiRemoved;
 
-
-
     [SerializeField] private List<GameObject> zumbaiPool;
     [SerializeField] private List<GameObject> zumbaiActiveList;
     [SerializeField] private GameObject zumbaiPref;

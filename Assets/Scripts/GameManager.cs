@@ -10,6 +10,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float difficultyTimerMax = 10f;
     [SerializeField] private float gameSpeed = 5f;
 
+    public enum GameState
+    {
+        MainMenu,
+        IsPlaying,
+        IsPause,
+        IsOver
+    }
+
     private void Awake()
     {
         Instance = this;
