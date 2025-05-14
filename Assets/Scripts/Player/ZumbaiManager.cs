@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,11 @@ using UnityEngine.Pool;
 public class ZumbaiManager : MonoBehaviour
 {
     public static ZumbaiManager Instance { get; private set; }
+
+    public event EventHandler OnZumbaiAdded;
+    public event EventHandler OnZumbaiRemoved;
+
+
 
     [SerializeField] private List<GameObject> zumbaiPool;
     [SerializeField] private List<GameObject> zumbaiActiveList;
@@ -103,13 +109,15 @@ public class ZumbaiManager : MonoBehaviour
     public void AddZumbai()
     {
         GameObject zumbaiOb = GetPooledObject();
-        zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0,5,0);
+        zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0,5,UnityEngine.Random.Range(-2,2));
         zumbaiOb.SetActive(true);
         zumbaiActiveList.Add(zumbaiOb);
+        OnZumbaiAdded?.Invoke(this, EventArgs.Empty);
     }
     public void RemoveZumbai(GameObject zumbai)
     {
         zumbaiActiveList.Remove(zumbai);
+        OnZumbaiRemoved?.Invoke(this, EventArgs.Empty);
     }
     public int GetZumbaiCount()
     {
