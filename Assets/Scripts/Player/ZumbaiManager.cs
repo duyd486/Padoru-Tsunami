@@ -99,6 +99,16 @@ public class ZumbaiManager : MonoBehaviour
         }
     }
 
+    public void NewGame()
+    {
+        foreach(GameObject zumbai in zumbaiPool)
+        {
+            zumbai.SetActive(false);
+        }
+        zumbaiActiveList = new List<GameObject>();
+        AddZumbai();
+    }
+
     private void SortZumbai()
     {
         zumbaiActiveList = zumbaiActiveList.OrderByDescending(Zumbai => Zumbai.transform.position.x).ToList();
@@ -106,20 +116,21 @@ public class ZumbaiManager : MonoBehaviour
 
     public void AddZumbai()
     {
+        OnZumbaiAdded?.Invoke(this, EventArgs.Empty);
         GameObject zumbaiOb = GetPooledObject();
         zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0,5,UnityEngine.Random.Range(-2,2));
         zumbaiOb.SetActive(true);
         zumbaiActiveList.Add(zumbaiOb);
-        OnZumbaiAdded?.Invoke(this, EventArgs.Empty);
     }
     public void RemoveZumbai(GameObject zumbai)
     {
         zumbaiActiveList.Remove(zumbai);
         OnZumbaiRemoved?.Invoke(this, EventArgs.Empty);
+
     }
     public int GetZumbaiCount()
     {
-        return zumbaiPool.Count;
+        return zumbaiActiveList.Count;
     }
     public Vector3 GetCenterOfBoids()
     {

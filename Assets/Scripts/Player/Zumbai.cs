@@ -13,6 +13,7 @@ public class Zumbai : MonoBehaviour
     [SerializeField] private float onHoldDrag = 5;
     [SerializeField] private float jumpCheck = 1f;
     [SerializeField] private float gravityScale = 3;
+    [SerializeField] private bool isDead = false;
 
 
     [SerializeField] private float neighborRadius = 2.5f;
@@ -103,7 +104,7 @@ public class Zumbai : MonoBehaviour
     private void HandleInteract()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, Vector3.right, out hit, 2f))
+        if(Physics.Raycast(transform.position, Vector3.right, out hit, 2f) && !isDead)
         {
             Hoomen hoomen = hit.collider.GetComponentInParent<Hoomen>();
             Bomb bomb = hit.collider.GetComponentInParent<Bomb>();
@@ -138,7 +139,6 @@ public class Zumbai : MonoBehaviour
 
     public void JumpPress()
     {
-        Debug.DrawRay(transform.position, Vector3.down * jumpCheck);
         rb.drag = defaultDrag;
         if (isGrounded)
         {
@@ -160,6 +160,7 @@ public class Zumbai : MonoBehaviour
         GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.black;
         rb.AddForce(new Vector3(0, jumpForce));
         GetComponentInChildren<CapsuleCollider>().isTrigger = true;
+        isDead = true;
 
         ZumbaiManager.Instance.RemoveZumbai(this.gameObject);
         StartCoroutine(ResetAfterFall(2f));
@@ -172,6 +173,7 @@ public class Zumbai : MonoBehaviour
         GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
         GetComponentInChildren<CapsuleCollider>().isTrigger = false;
         gameObject.SetActive(false);
+        isDead = false;
     }
 
     public bool GetIsGrounded()

@@ -22,7 +22,6 @@ public class ItemsManager : MonoBehaviour
     private void Start()
     {
         itemsPool = new List<GameObject>();
-        accelerationTimer = accelerationTimerMax;
         SpawnDefault();
     }
 
@@ -57,12 +56,15 @@ public class ItemsManager : MonoBehaviour
 
     public GameObject GetPooledObject()
     {
+        int count = 0;
         for (int i = UnityEngine.Random.Range(0, itemsPool.Count); i < itemsPool.Count; i = UnityEngine.Random.Range(0, itemsPool.Count))
         {
             if (!itemsPool[i].activeInHierarchy)
             {
                 return itemsPool[i];
             }
+            count++;
+            if (count == 10) break;
         }
         GameObject item;
         item = Instantiate(itemsList[UnityEngine.Random.Range(0, itemsList.Count)], transform);
@@ -76,5 +78,15 @@ public class ItemsManager : MonoBehaviour
         GameObject item = GetPooledObject();
         item.transform.position = new Vector3(240,0,0);
         item.SetActive(true);
+        item.GetComponent<Item>().Respawn();
+    }
+
+    public void ResetItems()
+    {
+        foreach(GameObject item in itemsPool)
+        {
+            item.SetActive(false);
+        }
+        accelerationTimer = 0f;
     }
 }
