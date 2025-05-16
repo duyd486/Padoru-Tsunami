@@ -11,7 +11,7 @@ public class ZumbaiCountUI : MonoBehaviour
 
     private void Start()
     {
-        zumbaiCount = 1;
+        zumbaiCount = 0;
         zumbaiCountText.text = "X " + zumbaiCount;
         ZumbaiManager.Instance.OnZumbaiAdded += ZumbaiManager_OnZumbaiAdded;
         ZumbaiManager.Instance.OnZumbaiRemoved += ZumbaiManager_OnZumbaiRemoved;

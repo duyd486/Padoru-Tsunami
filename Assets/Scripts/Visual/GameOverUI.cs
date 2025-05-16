@@ -13,8 +13,13 @@ public class GameOverUI : MonoBehaviour
     {
         restartButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.NewGame();
+            GameManager.Instance.SetUpNewGame();
             Hide();
+        });
+        mainMenuButton.onClick.AddListener(() =>
+        {
+            Hide();
+            MainMenuUI.Instance.Show();
         });
     }
 

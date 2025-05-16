@@ -16,14 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float gameSpeed = 5f;
     [SerializeField] private float defaultGameSpeed = 5f;
 
-    private enum GameState
-    {
-        MainMenu,
-        IsPlaying,
-        IsGameOver
-    }
-    private GameState state;
-
     private void Awake()
     {
         Instance = this;
@@ -50,7 +42,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void NewGame()
+    public void SetUpNewGame()
     {
         ZumbaiManager.Instance.NewGame();
         gameSpeed = defaultGameSpeed;
