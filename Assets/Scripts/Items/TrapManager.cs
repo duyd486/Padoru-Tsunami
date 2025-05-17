@@ -5,11 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ItemsManager : MonoBehaviour
+public class TrapManager : MonoBehaviour
 {
-    public static ItemsManager Instance {  get; private set; }
-    [SerializeField] private List<GameObject> itemsList = new List<GameObject>(); 
-    [SerializeField] private List<GameObject> itemsPool;
+    public static TrapManager Instance {  get; private set; }
+    [SerializeField] private List<GameObject> trapList = new List<GameObject>(); 
+    [SerializeField] private List<GameObject> trapPool;
     [SerializeField] private float accelerationTimer = 0f;
     [SerializeField] private float accelerationTimerMax = 6f;
 
@@ -21,7 +21,7 @@ public class ItemsManager : MonoBehaviour
     }
     private void Start()
     {
-        itemsPool = new List<GameObject>();
+        trapPool = new List<GameObject>();
         SpawnDefault();
     }
 
@@ -41,14 +41,14 @@ public class ItemsManager : MonoBehaviour
 
     private void SpawnDefault()
     {
-        foreach(GameObject itemInList in itemsList)
+        foreach(GameObject itemInList in trapList)
         {
             for(int i = 0; i < 3; i++)
             {
                 GameObject item;
                 item = Instantiate(itemInList, transform);
                 item.SetActive(false);
-                itemsPool.Add(item);
+                trapPool.Add(item);
             }
 
         }
@@ -57,19 +57,19 @@ public class ItemsManager : MonoBehaviour
     public GameObject GetPooledObject()
     {
         int count = 0;
-        for (int i = UnityEngine.Random.Range(0, itemsPool.Count); i < itemsPool.Count; i = UnityEngine.Random.Range(0, itemsPool.Count))
+        for (int i = UnityEngine.Random.Range(0, trapPool.Count); i < trapPool.Count; i = UnityEngine.Random.Range(0, trapPool.Count))
         {
-            if (!itemsPool[i].activeInHierarchy)
+            if (!trapPool[i].activeInHierarchy)
             {
-                return itemsPool[i];
+                return trapPool[i];
             }
             count++;
             if (count == 10) break;
         }
         GameObject item;
-        item = Instantiate(itemsList[UnityEngine.Random.Range(0, itemsList.Count)], transform);
+        item = Instantiate(trapList[UnityEngine.Random.Range(0, trapList.Count - 1)], transform);
         item.SetActive(false);
-        itemsPool.Add(item);
+        trapPool.Add(item);
         return item;
     }
 
@@ -83,7 +83,7 @@ public class ItemsManager : MonoBehaviour
 
     public void ResetItems()
     {
-        foreach(GameObject item in itemsPool)
+        foreach(GameObject item in trapPool)
         {
             item.SetActive(false);
         }

@@ -1243,13 +1243,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.030800203, y: 0, z: 0, w: 0.99952555}
-  m_LocalPosition: {x: 0, y: 4.66, z: -14.08}
+  m_LocalRotation: {x: -0.033155207, y: 0, z: 0, w: 0.9994502}
+  m_LocalPosition: {x: 1, y: 6, z: -16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -3.53, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.8, y: 0, z: 0}
 --- !u!1 &970077479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +2989,7 @@ GameObject:
   - component: {fileID: 2096211541}
   - component: {fileID: 2096211540}
   m_Layer: 0
-  m_Name: ItemManager
+  m_Name: TrapManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3007,7 +3007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3e05881de2c7149a76695a9845d32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsList:
+  trapList:
   - {fileID: 3426441104353782894, guid: d615be700d84a56469a1def148655b1f, type: 3}
   - {fileID: 3723012793732812761, guid: 45a5714eaad78554a95a73102bd5a373, type: 3}
   - {fileID: 5331976895067890141, guid: feb7b431a09240a4887df3b7c39dcf1c, type: 3}
@@ -3015,9 +3015,9 @@ MonoBehaviour:
   - {fileID: 3723012793732812761, guid: 0424349eeec126f4e8aba51b38396c44, type: 3}
   - {fileID: 3723012793732812761, guid: f46f6f4e226ee09419a76887880a9763, type: 3}
   - {fileID: 5331976895067890141, guid: a456a91c47bf30b4584372294add70f4, type: 3}
-  itemsPool: []
+  trapPool: []
   accelerationTimer: 10
-  accelerationTimerMax: 10
+  accelerationTimerMax: 8
 --- !u!4 &2096211541
 Transform:
   m_ObjectHideFlags: 0

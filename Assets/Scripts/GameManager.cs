@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         {
             isPlaying = false;
             OnGameOver?.Invoke(this, EventArgs.Empty);
-            ItemsManager.Instance.ResetItems();
+            TrapManager.Instance.ResetItems();
         }
     }
 
