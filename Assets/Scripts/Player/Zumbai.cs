@@ -108,6 +108,7 @@ public class Zumbai : MonoBehaviour
         {
             Hoomen hoomen = hit.collider.GetComponentInParent<Hoomen>();
             Bomb bomb = hit.collider.GetComponentInParent<Bomb>();
+            Candy candy = hit.collider.GetComponentInParent<Candy>();
             
             if (hoomen != null)
             {
@@ -118,6 +119,10 @@ public class Zumbai : MonoBehaviour
             {
                 bomb.Die();
                 Die();
+            }
+            if(candy != null)
+            {
+                candy.Die();
             }
         }
         Debug.DrawRay(transform.position, Vector3.right, Color.red);

@@ -38,9 +38,16 @@ public class ZumbaiManager : MonoBehaviour
 
         GameInput.Instance.OnTestPress += GameInput_OnTestPress;
 
+        GameManager.Instance.OnGameStart += GameManager_OnGameStart;
+
         zumbaiPool = new List<GameObject>();
         zumbaiActiveList = new List<GameObject>();
         AddZumbai();
+    }
+
+    private void GameManager_OnGameStart(object sender, EventArgs e)
+    {
+        NewGame();
     }
 
     public GameObject GetPooledObject()

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public event EventHandler OnGameOver;
-
+    public event EventHandler OnGameStart;
 
     [SerializeField] private bool isPlaying = false;
     [SerializeField] private float difficultyTimer;
@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour
 
     public void SetUpNewGame()
     {
-        ZumbaiManager.Instance.NewGame();
         gameSpeed = defaultGameSpeed;
         isPlaying = true;
+        OnGameStart?.Invoke(this, EventArgs.Empty);
     }
 
     private void UpLevel()
