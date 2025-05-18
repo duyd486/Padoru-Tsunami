@@ -80,23 +80,25 @@ public class ZumbaiManager : MonoBehaviour
     private IEnumerator TriggerJump(Jump jump)
     {
         SortZumbai();
-        foreach (GameObject zumbai in zumbaiActiveList)
-        {
-            switch (jump)
+        if (!GameManager.Instance.GetIsPlaying()) yield return false;
+        else
+            foreach (GameObject zumbai in zumbaiActiveList)
             {
-                default:
-                case Jump.JumpPress:
-                    zumbai.GetComponent<Zumbai>().JumpPress();
-                    break;
-                case Jump.JumpHold:
-                    zumbai.GetComponent<Zumbai>().JumpHold();
-                    break;
-                case Jump.JumpRelease:
-                    zumbai.GetComponent<Zumbai>().JumpRelease();
-                    break;
+                switch (jump)
+                {
+                    default:
+                    case Jump.JumpPress:
+                        zumbai.GetComponent<Zumbai>().JumpPress();
+                        break;
+                    case Jump.JumpHold:
+                        zumbai.GetComponent<Zumbai>().JumpHold();
+                        break;
+                    case Jump.JumpRelease:
+                        zumbai.GetComponent<Zumbai>().JumpRelease();
+                        break;
+                }
+                yield return new WaitForSeconds(jumpDelay);
             }
-            yield return new WaitForSeconds(jumpDelay);
-        }
     }
 
     public void NewGame()

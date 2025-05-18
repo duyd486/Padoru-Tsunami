@@ -77,8 +77,9 @@ MonoBehaviour:
   jumpForce: 1200
   defaultDrag: 0
   onHoldDrag: 7
-  jumpCheck: 1.8
+  jumpCheck: 2
   gravityScale: 3
+  isDead: 0
   neighborRadius: 3
   separationDistance: 2.5
 --- !u!1001 &6316903732363231641
