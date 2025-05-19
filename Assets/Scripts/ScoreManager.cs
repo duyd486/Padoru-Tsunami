@@ -17,19 +17,24 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        ZumbaiManager.Instance.OnZumbaiAdded += ZumbaiManager_OnZumbaiAdded;
-        ZumbaiManager.Instance.OnZumbaiRemoved += ZumbaiManager_OnZumbaiRemoved;
+        ZumbaiManager.Instance.OnZumbaiChanged += ZumbaiManager_OnZumbaiChanged;
+        GameManager.Instance.OnGameStart += GameManager_OnGameStart;
     }
 
-    private void ZumbaiManager_OnZumbaiRemoved(object sender, System.EventArgs e)
+    private void GameManager_OnGameStart(object sender, System.EventArgs e)
     {
-        currentZumbai--;
+        currentZumbai = 1;
+        totalZumbai = 1;
+        currentCandy = 0;
     }
 
-    private void ZumbaiManager_OnZumbaiAdded(object sender, System.EventArgs e)
+    private void ZumbaiManager_OnZumbaiChanged(object sender, System.EventArgs e)
     {
-        currentZumbai++;
-        totalZumbai++;
+        if(currentZumbai <= ZumbaiManager.Instance.GetZumbaiCount())
+        {
+            totalZumbai++;
+        }
+        currentZumbai = ZumbaiManager.Instance.GetZumbaiCount();
     }
 
     public int GetCurrentZumbai()

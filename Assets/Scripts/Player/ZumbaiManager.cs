@@ -9,8 +9,7 @@ public class ZumbaiManager : MonoBehaviour
 {
     public static ZumbaiManager Instance { get; private set; }
 
-    public event EventHandler OnZumbaiAdded;
-    public event EventHandler OnZumbaiRemoved;
+    public event EventHandler OnZumbaiChanged;
 
     [SerializeField] private List<GameObject> zumbaiPool;
     [SerializeField] private List<GameObject> zumbaiActiveList;
@@ -35,14 +34,11 @@ public class ZumbaiManager : MonoBehaviour
         GameInput.Instance.OnJumpAction += GameInput_OnJumpAction;
         GameInput.Instance.OnJumpHold += GameInput_OnJumpHold;
         GameInput.Instance.OnJumpRelease += GameInput_OnJumpRelease;
-
         GameInput.Instance.OnTestPress += GameInput_OnTestPress;
-
         GameManager.Instance.OnGameStart += GameManager_OnGameStart;
 
         zumbaiPool = new List<GameObject>();
         zumbaiActiveList = new List<GameObject>();
-        AddZumbai();
     }
 
     private void GameManager_OnGameStart(object sender, EventArgs e)
@@ -125,16 +121,16 @@ public class ZumbaiManager : MonoBehaviour
 
     public void AddZumbai()
     {
-        OnZumbaiAdded?.Invoke(this, EventArgs.Empty);
         GameObject zumbaiOb = GetPooledObject();
         zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0,5,UnityEngine.Random.Range(-2,2));
         zumbaiOb.SetActive(true);
         zumbaiActiveList.Add(zumbaiOb);
+        OnZumbaiChanged?.Invoke(this, EventArgs.Empty);
     }
     public void RemoveZumbai(GameObject zumbai)
     {
         zumbaiActiveList.Remove(zumbai);
-        OnZumbaiRemoved?.Invoke(this, EventArgs.Empty);
+        OnZumbaiChanged?.Invoke(this, EventArgs.Empty);
 
     }
     public int GetZumbaiCount()

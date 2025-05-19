@@ -25,16 +25,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 2;
-        ZumbaiManager.Instance.OnZumbaiRemoved += ZumbaiManager_OnZumbaiRemoved;
+        ZumbaiManager.Instance.OnZumbaiChanged += ZumbaiManager_OnZumbaiChanged;
     }
     private void Update()
     {
         UpLevel();
     }
 
-    private void ZumbaiManager_OnZumbaiRemoved(object sender, System.EventArgs e)
+    private void ZumbaiManager_OnZumbaiChanged(object sender, EventArgs e)
     {
-        if(ZumbaiManager.Instance.GetZumbaiCount() == 0)
+        if(ZumbaiManager.Instance.GetZumbaiCount() == 0 && isPlaying == true)
         {
             isPlaying = false;
             OnGameOver?.Invoke(this, EventArgs.Empty);

@@ -5,27 +5,32 @@ using UnityEngine;
 
 public class ZumbaiCountUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI zumbaiCountText;
-    private int zumbaiCount = 0;
+    [SerializeField] private TextMeshProUGUI currentZumbaiCountText;
+    [SerializeField] private TextMeshProUGUI totalZumbaiCountText;
+    [SerializeField] private TextMeshProUGUI candyCountText;
+
 
 
     private void Start()
     {
-        zumbaiCount = 0;
-        zumbaiCountText.text = "X " + zumbaiCount;
-        ZumbaiManager.Instance.OnZumbaiAdded += ZumbaiManager_OnZumbaiAdded;
-        ZumbaiManager.Instance.OnZumbaiRemoved += ZumbaiManager_OnZumbaiRemoved;
+        currentZumbaiCountText.text = "X 0";
+        ZumbaiManager.Instance.OnZumbaiChanged += ZumbaiManager_OnZumbaiChanged;
+        GameManager.Instance.OnGameStart += GameManager_OnGameStart;
     }
 
-    private void ZumbaiManager_OnZumbaiRemoved(object sender, System.EventArgs e)
+    private void GameManager_OnGameStart(object sender, System.EventArgs e)
     {
-        zumbaiCount--;
-        zumbaiCountText.text = "X " + zumbaiCount;
+        UpdateVisual();
     }
 
-    private void ZumbaiManager_OnZumbaiAdded(object sender, System.EventArgs e)
+    private void ZumbaiManager_OnZumbaiChanged(object sender, System.EventArgs e)
     {
-        zumbaiCount++;
-        zumbaiCountText.text = "X " + zumbaiCount;
+        UpdateVisual();
+    }
+
+    private void UpdateVisual()
+    {
+        currentZumbaiCountText.text = "X " + ScoreManager.Instance.GetCurrentZumbai().ToString();
+        totalZumbaiCountText.text = ScoreManager.Instance.GetTotalZumbai().ToString();
     }
 }
