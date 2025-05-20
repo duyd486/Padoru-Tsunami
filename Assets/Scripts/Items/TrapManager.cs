@@ -22,7 +22,7 @@ public class TrapManager : MonoBehaviour
     private void Start()
     {
         trapPool = new List<GameObject>();
-        SpawnDefault();
+        SpawnDefaultPool();
     }
 
 
@@ -34,12 +34,12 @@ public class TrapManager : MonoBehaviour
             if(accelerationTimer <= 0f)
             {
                 accelerationTimer = accelerationTimerMax;
-                SpawnItems();
+                SpawnTrap();
             }
         }
     }
 
-    private void SpawnDefault()
+    private void SpawnDefaultPool()
     {
         foreach(GameObject itemInList in trapList)
         {
@@ -73,7 +73,7 @@ public class TrapManager : MonoBehaviour
         return item;
     }
 
-    public void SpawnItems()
+    public void SpawnTrap()
     {
         GameObject item = GetPooledObject();
         item.transform.position = new Vector3(240,0,0);

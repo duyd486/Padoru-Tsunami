@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class Zumbai : MonoBehaviour
 {
@@ -22,12 +23,6 @@ public class Zumbai : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        HandleInteract();
-
     }
     private void FixedUpdate()
     {
@@ -101,31 +96,26 @@ public class Zumbai : MonoBehaviour
         Gizmos.DrawLine(transform.position, Vector3.down * jumpCheck);
     }
 
-    private void HandleInteract()
+    private void OnTriggerEnter(Collider other)
     {
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, Vector3.right, out hit, 2f) && !isDead)
+        Hoomen hoomen = other.GetComponentInParent<Hoomen>();
+        Bomb bomb = other.GetComponentInParent<Bomb>();
+        Candy candy = other.GetComponentInParent<Candy>();
+
+        if (hoomen != null)
         {
-            Hoomen hoomen = hit.collider.GetComponentInParent<Hoomen>();
-            Bomb bomb = hit.collider.GetComponentInParent<Bomb>();
-            Candy candy = hit.collider.GetComponentInParent<Candy>();
-            
-            if (hoomen != null)
-            {
-                hoomen.Die();
-                ZumbaiManager.Instance.AddZumbai();
-            }
-            if(bomb != null)
-            {
-                bomb.Die();
-                Die();
-            }
-            if(candy != null)
-            {
-                candy.Die();
-            }
+            hoomen.Die();
+            ZumbaiManager.Instance.AddZumbai();
         }
-        Debug.DrawRay(transform.position, Vector3.right, Color.red);
+        if (bomb != null)
+        {
+            bomb.Die();
+            Die();
+        }
+        if (candy != null)
+        {
+            candy.Die();
+        }
     }
 
     private void HandleJump()
