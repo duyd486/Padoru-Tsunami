@@ -32,5 +32,6 @@ public class ZumbaiCountUI : MonoBehaviour
     {
         currentZumbaiCountText.text = "X " + ScoreManager.Instance.GetCurrentZumbai().ToString();
         totalZumbaiCountText.text = ScoreManager.Instance.GetTotalZumbai().ToString();
+        candyCountText.text = ScoreManager.Instance.GetCurrentCandy().ToString();
     }
 }

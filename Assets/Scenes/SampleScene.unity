@@ -2357,7 +2357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed930297e213a44b0789de6ee4327f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zumbaiCountText: {fileID: 1596481989}
+  currentZumbaiCountText: {fileID: 1596481989}
+  totalZumbaiCountText: {fileID: 1147867730}
+  candyCountText: {fileID: 2032782962}
 --- !u!1 &1572280279
 GameObject:
   m_ObjectHideFlags: 0
