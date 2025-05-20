@@ -66,7 +66,7 @@ public class Zumbai : MonoBehaviour
             steer += separation * 0.04f;
             alignment = (alignment / count).normalized;
         }
-        steer += cohesion * 0.05f;
+        steer += cohesion * 0.07f;
         steer += alignment * 0.035f;
 
         if (isGrounded)

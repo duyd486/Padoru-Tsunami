@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,10 @@ public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
     [SerializeField] private Button mainMenuButton;
+    [SerializeField] private TextMeshProUGUI hatText;
+    [SerializeField] private TextMeshProUGUI candyText;
+    [SerializeField] private TextMeshProUGUI timeText;
+
 
 
     private void Awake()
@@ -31,6 +36,9 @@ public class GameOverUI : MonoBehaviour
 
     private void GameManager_OnGameOver(object sender, System.EventArgs e)
     {
+        hatText.text = ScoreManager.Instance.GetTotalZumbai().ToString();
+        candyText.text = ScoreManager.Instance.GetCurrentCandy().ToString();
+        timeText.text = ScoreManager.Instance.GetTotalTime().ToString();
         Show();
     }
 

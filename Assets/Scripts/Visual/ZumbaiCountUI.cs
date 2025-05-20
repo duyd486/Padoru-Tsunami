@@ -16,10 +16,18 @@ public class ZumbaiCountUI : MonoBehaviour
         currentZumbaiCountText.text = "X 0";
         ZumbaiManager.Instance.OnZumbaiChanged += ZumbaiManager_OnZumbaiChanged;
         GameManager.Instance.OnGameStart += GameManager_OnGameStart;
+        GameManager.Instance.OnGameOver += GameManager_OnGameOver;
+        Hide();
+    }
+
+    private void GameManager_OnGameOver(object sender, System.EventArgs e)
+    {
+        Hide();
     }
 
     private void GameManager_OnGameStart(object sender, System.EventArgs e)
     {
+        Show();
         UpdateVisual();
     }
 
@@ -33,5 +41,14 @@ public class ZumbaiCountUI : MonoBehaviour
         currentZumbaiCountText.text = "X " + ScoreManager.Instance.GetCurrentZumbai().ToString();
         totalZumbaiCountText.text = ScoreManager.Instance.GetTotalZumbai().ToString();
         candyCountText.text = ScoreManager.Instance.GetCurrentCandy().ToString();
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }
