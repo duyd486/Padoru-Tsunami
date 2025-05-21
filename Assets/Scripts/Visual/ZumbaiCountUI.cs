@@ -8,7 +8,9 @@ public class ZumbaiCountUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentZumbaiCountText;
     [SerializeField] private TextMeshProUGUI totalZumbaiCountText;
     [SerializeField] private TextMeshProUGUI candyCountText;
+    [SerializeField] private TextMeshProUGUI FPSText;
 
+    float deltaTime = 0.0f;
 
 
     private void Start()
@@ -18,6 +20,13 @@ public class ZumbaiCountUI : MonoBehaviour
         GameManager.Instance.OnGameStart += GameManager_OnGameStart;
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
         Hide();
+    }
+
+    private void Update()
+    {
+        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+        float fps = 1.0f / deltaTime;
+        FPSText.text = Mathf.Ceil(fps).ToString();
     }
 
     private void GameManager_OnGameOver(object sender, System.EventArgs e)

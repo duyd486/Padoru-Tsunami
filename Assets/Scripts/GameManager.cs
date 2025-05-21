@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 120;
+        QualitySettings.vSyncCount = 0;
         Time.timeScale = 2;
         ZumbaiManager.Instance.OnZumbaiChanged += ZumbaiManager_OnZumbaiChanged;
     }
