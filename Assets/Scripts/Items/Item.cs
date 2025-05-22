@@ -14,9 +14,13 @@ public class Item : MonoBehaviour
     }
     public void Respawn()
     {
-        foreach(Transform chil in transform)
+        foreach(Transform son in transform)
         {
-            chil.gameObject.SetActive(true);
+            son.gameObject.SetActive(true);
+            foreach(Transform chil in son)
+            {
+                chil.gameObject.SetActive(true);
+            }
         }
     }
 }

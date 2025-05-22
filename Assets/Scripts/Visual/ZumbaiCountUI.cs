@@ -19,7 +19,13 @@ public class ZumbaiCountUI : MonoBehaviour
         ZumbaiManager.Instance.OnZumbaiChanged += ZumbaiManager_OnZumbaiChanged;
         GameManager.Instance.OnGameStart += GameManager_OnGameStart;
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
+        ScoreManager.Instance.OnCandyChanged += ScoreManager_OnCandyChanged;
         Hide();
+    }
+
+    private void ScoreManager_OnCandyChanged(object sender, System.EventArgs e)
+    {
+        UpdateVisual();
     }
 
     private void Update()

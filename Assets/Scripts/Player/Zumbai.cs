@@ -14,7 +14,6 @@ public class Zumbai : MonoBehaviour
     [SerializeField] private float onHoldDrag = 5;
     [SerializeField] private float jumpCheck = 1f;
     [SerializeField] private float gravityScale = 3;
-    [SerializeField] private bool isDead = false;
 
 
     [SerializeField] private float neighborRadius = 2.5f;
@@ -115,6 +114,7 @@ public class Zumbai : MonoBehaviour
         if (candy != null)
         {
             candy.Die();
+            ScoreManager.Instance.AddCandy();
         }
     }
 
@@ -155,7 +155,6 @@ public class Zumbai : MonoBehaviour
         GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.black;
         rb.AddForce(new Vector3(0, jumpForce));
         GetComponentInChildren<CapsuleCollider>().isTrigger = true;
-        isDead = true;
 
         ZumbaiManager.Instance.RemoveZumbai(this.gameObject);
         StartCoroutine(ResetAfterFall(2f));
@@ -168,7 +167,6 @@ public class Zumbai : MonoBehaviour
         GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.white;
         GetComponentInChildren<CapsuleCollider>().isTrigger = false;
         gameObject.SetActive(false);
-        isDead = false;
     }
 
     public bool GetIsGrounded()

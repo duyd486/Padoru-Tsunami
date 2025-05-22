@@ -7,6 +7,8 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
+    public event EventHandler OnCandyChanged;
+
     [SerializeField] private int currentZumbai = 0;
     [SerializeField] private int totalZumbai = 0;
     [SerializeField] private int currentCandy = 0;
@@ -31,6 +33,7 @@ public class ScoreManager : MonoBehaviour
         currentCandy = 0;
         totalTime = 0;
         startTime = Time.realtimeSinceStartup;
+        OnCandyChanged?.Invoke(this, EventArgs.Empty);
         Debug.Log(startTime);
     }
 
@@ -48,6 +51,11 @@ public class ScoreManager : MonoBehaviour
         currentZumbai = ZumbaiManager.Instance.GetZumbaiCount();
     }
 
+    public void AddCandy()
+    {
+        currentCandy++;
+        OnCandyChanged?.Invoke(this, EventArgs.Empty);
+    }
     public int GetCurrentZumbai()
     {
         return currentZumbai;

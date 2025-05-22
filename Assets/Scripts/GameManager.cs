@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float gameSpeed = 5f;
     [SerializeField] private float defaultGameSpeed = 5f;
 
+    [SerializeField] private int scaleTimeCount = 0;
+    [SerializeField] private float timeScaleUp = 0.5f;
+
     private void Awake()
     {
         Instance = this;
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
     {
         Application.targetFrameRate = 120;
         QualitySettings.vSyncCount = 0;
+
         Time.timeScale = 2;
         ZumbaiManager.Instance.OnZumbaiChanged += ZumbaiManager_OnZumbaiChanged;
     }
@@ -48,6 +52,8 @@ public class GameManager : MonoBehaviour
     {
         gameSpeed = defaultGameSpeed;
         isPlaying = true;
+        scaleTimeCount = 0;
+        Time.timeScale = 2;
         OnGameStart?.Invoke(this, EventArgs.Empty);
     }
 
@@ -57,7 +63,13 @@ public class GameManager : MonoBehaviour
         if (difficultyTimer > difficultyTimerMax)
         {
             difficultyTimer = 0;
-            gameSpeed += 0.5f;
+            gameSpeed += 0.25f;
+            scaleTimeCount++;
+            if(scaleTimeCount == 10)
+            {
+                Time.timeScale += 0.1f;
+                scaleTimeCount = 0;
+            }
         }
     }
     public bool GetIsPlaying()
