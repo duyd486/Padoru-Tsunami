@@ -12,12 +12,12 @@ public class Zumbai : MonoBehaviour
     [SerializeField] private float jumpForce = 500f;
     [SerializeField] private float defaultDrag = 1;
     [SerializeField] private float onHoldDrag = 5;
-    [SerializeField] private float jumpCheck = 1f;
+    [SerializeField] private float jumpCheck = 3f;
     [SerializeField] private float gravityScale = 3;
 
 
-    [SerializeField] private float neighborRadius = 2.5f;
-    [SerializeField] private float separationDistance = 1.5f;
+    [SerializeField] private float neighborRadius = 3.2f;
+    [SerializeField] private float separationDistance = 2.7f;
 
     private void Start()
     {
@@ -57,11 +57,11 @@ public class Zumbai : MonoBehaviour
 
         if(count > 0)
         {
-            steer += separation * 0.04f;
+            steer += separation * 0.044f;
             alignment = (alignment / count).normalized;
         }
         steer += cohesion * 0.07f;
-        steer += alignment * 0.035f;
+        steer += alignment * 0.037f;
 
         if (isGrounded)
         {

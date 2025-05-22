@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6865603557340281647}
   - component: {fileID: 4110412648651872604}
   - component: {fileID: 5241703743694568051}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Zumbai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,11 +77,10 @@ MonoBehaviour:
   jumpForce: 1200
   defaultDrag: 0
   onHoldDrag: 7
-  jumpCheck: 2
+  jumpCheck: 3
   gravityScale: 3
-  isDead: 0
-  neighborRadius: 3
-  separationDistance: 2.5
+  neighborRadius: 3.2
+  separationDistance: 2.7
 --- !u!1001 &6316903732363231641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,6 +136,10 @@ PrefabInstance:
     - target: {fileID: 2711685067913366902, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
       propertyPath: m_Name
       value: Saber
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711685067913366902, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2711685067913366902, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
       propertyPath: m_IsActive

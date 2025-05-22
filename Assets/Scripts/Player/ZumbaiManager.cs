@@ -14,7 +14,7 @@ public class ZumbaiManager : MonoBehaviour
     [SerializeField] private List<GameObject> zumbaiPool;
     [SerializeField] private List<GameObject> zumbaiActiveList;
     [SerializeField] private GameObject zumbaiPref;
-    [SerializeField] private float jumpDelay = 0.1f;
+    [SerializeField] private float jumpDelay = 0.08f;
     [SerializeField] private Transform centerOfBoids;
 
     enum Jump
@@ -111,7 +111,7 @@ public class ZumbaiManager : MonoBehaviour
             zumbai.SetActive(false);
         }
         zumbaiActiveList = new List<GameObject>();
-        AddZumbai();
+        AddZumbai(5);
     }
 
     private void SortZumbai()
@@ -119,14 +119,15 @@ public class ZumbaiManager : MonoBehaviour
         zumbaiActiveList = zumbaiActiveList.OrderByDescending(Zumbai => Zumbai.transform.position.x).ToList();
     }
 
-    public void AddZumbai()
+    public void AddZumbai(float fallHeight = 25)
     {
         GameObject zumbaiOb = GetPooledObject();
-        zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0,5,UnityEngine.Random.Range(-2,2));
+        zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0, fallHeight, UnityEngine.Random.Range(-2,2));
         zumbaiOb.SetActive(true);
         zumbaiActiveList.Add(zumbaiOb);
         OnZumbaiChanged?.Invoke(this, EventArgs.Empty);
     }
+
     public void RemoveZumbai(GameObject zumbai)
     {
         zumbaiActiveList.Remove(zumbai);
