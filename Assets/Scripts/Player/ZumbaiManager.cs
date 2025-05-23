@@ -10,6 +10,7 @@ public class ZumbaiManager : MonoBehaviour
     public static ZumbaiManager Instance { get; private set; }
 
     public event EventHandler OnZumbaiChanged;
+    public event EventHandler OnZumbaiExplosed;
 
     [SerializeField] private List<GameObject> zumbaiPool;
     [SerializeField] private List<GameObject> zumbaiActiveList;
@@ -98,6 +99,7 @@ public class ZumbaiManager : MonoBehaviour
                         break;
                     case Jump.JumpRelease:
                         zumbai.GetComponent<Zumbai>().JumpRelease();
+                        yield return new WaitForSeconds(0);
                         break;
                 }
                 yield return new WaitForSeconds(jumpDelay);
@@ -119,7 +121,7 @@ public class ZumbaiManager : MonoBehaviour
         zumbaiActiveList = zumbaiActiveList.OrderByDescending(Zumbai => Zumbai.transform.position.x).ToList();
     }
 
-    public void AddZumbai(float fallHeight = 25)
+    public void AddZumbai(float fallHeight = 40)
     {
         GameObject zumbaiOb = GetPooledObject();
         zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0, fallHeight, UnityEngine.Random.Range(-2,2));
@@ -132,6 +134,7 @@ public class ZumbaiManager : MonoBehaviour
     {
         zumbaiActiveList.Remove(zumbai);
         OnZumbaiChanged?.Invoke(this, EventArgs.Empty);
+        OnZumbaiExplosed?.Invoke(this, EventArgs.Empty);
 
     }
     public int GetZumbaiCount()

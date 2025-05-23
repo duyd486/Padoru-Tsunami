@@ -23,6 +23,7 @@ public class Zumbai : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
+
     private void FixedUpdate()
     {
         HandleJump();
@@ -62,11 +63,7 @@ public class Zumbai : MonoBehaviour
         }
         steer += cohesion * 0.07f;
         steer += alignment * 0.037f;
-
-        if (isGrounded)
-        {
-            rb.velocity += steer * gravityScale;
-        }
+        rb.velocity += steer * gravityScale;
     }
 
     private List<GameObject> GetNeighbors()
