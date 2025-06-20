@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -40,8 +41,15 @@ public class GameManager : MonoBehaviour
 
     private void ZumbaiManager_OnZumbaiChanged(object sender, EventArgs e)
     {
-        if(ZumbaiManager.Instance.GetZumbaiCount() == 0 && isPlaying == true)
+        _ = CheckGameOver();
+    }
+
+    private async Task CheckGameOver()
+    {
+        if (ZumbaiManager.Instance.GetZumbaiCount() == 0 && isPlaying == true)
         {
+            gameSpeed = defaultGameSpeed;
+            await Task.Delay(1000);
             isPlaying = false;
             OnGameOver?.Invoke(this, EventArgs.Empty);
             TrapManager.Instance.ResetItems();

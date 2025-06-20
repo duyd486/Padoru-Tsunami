@@ -7,7 +7,6 @@ public class RoadManager : MonoBehaviour
 {
     public static RoadManager Instance { get; private set; }
 
-
     [SerializeField] private List<GameObject> pooledObjects;
     [SerializeField] private GameObject roadPref;
     [SerializeField] private int amountToPool = 3;
