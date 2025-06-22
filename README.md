@@ -1,7 +1,5 @@
-# Tsunami
- Zombie Tsunami Clone
 # 🎄 Padoru Tsunami
-
+ Zombie Tsunami Clone
 > Một tựa game vui nhộn phong cách **endless runner**, lấy cảm hứng từ Zombie Tsunami, nơi bạn điều khiển một bầy Padoru chạy qua thành phố và lôi kéo thêm nhiều đồng đội vào "tsunami" của mình!
 
 ![Unity](https://img.shields.io/badge/engine-Unity-000?logo=unity)
