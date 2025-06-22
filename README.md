@@ -55,3 +55,7 @@
 
 ```bash
 git clone https://github.com/username/padoru-tsunami.git
+```
+### Mở trong Unity
+- Mở Unity Hub → "Open Project" → Chọn thư mục Tsunami
+- Nhấn Play để chạy game thử
