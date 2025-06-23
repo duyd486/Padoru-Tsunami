@@ -27,9 +27,9 @@
 - ✅ Cơ chế **chạy liên tục** (endless runner) tương tự Zombie Tsunami
 - ✅ Hệ thống **Padoru nối đuôi** có thể tăng/giảm linh hoạt
 - ✅ Áp dụng các **design pattern cơ bản**:
-  - 🧱 Singleton – Quản lý các hệ thống toàn cục
-  - ♻️ Object Pool – Tối ưu hiệu năng sinh / hủy đối tượng, đặc biệt dùng nhiều trong việc tái sử dụng của thể loại endless runner
-  - 👁️ Observer – Giao tiếp giữa các hệ thống UI / gameplay
+  - Singleton – Quản lý các hệ thống toàn cục
+  - Object Pool – Tối ưu hiệu năng sinh / hủy đối tượng, đặc biệt dùng nhiều trong việc tái sử dụng của thể loại endless runner
+  - Observer – Giao tiếp giữa các hệ thống UI / gameplay
 
 ---
 
@@ -52,7 +52,7 @@
 ### Clone repo
 
 ```bash
-git clone https://github.com/username/padoru-tsunami.git
+git clone https://github.com/duyd486/Tsunami.git
 ```
 ### Mở trong Unity
 - Mở Unity Hub → "Open Project" → Chọn thư mục Tsunami
