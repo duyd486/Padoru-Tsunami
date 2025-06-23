@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float defaultGameSpeed = 5f;
 
     [SerializeField] private int scaleTimeCount = 0;
-    [SerializeField] private float timeScaleUp = 0.5f;
 
     private void Awake()
     {

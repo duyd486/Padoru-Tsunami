@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -86,24 +87,42 @@ public class ZumbaiManager : MonoBehaviour
         SortZumbai();
         if (!GameManager.Instance.GetIsPlaying()) yield return false;
         else
-            foreach (GameObject zumbai in zumbaiActiveList)
+            for(int i = 0; i < zumbaiActiveList.Count; i++)
             {
                 switch (jump)
                 {
                     default:
                     case Jump.JumpPress:
-                        zumbai.GetComponent<Zumbai>().JumpPress();
+                        zumbaiActiveList[i].GetComponent<Zumbai>().JumpPress();
                         break;
                     case Jump.JumpHold:
-                        zumbai.GetComponent<Zumbai>().JumpHold();
+                        zumbaiActiveList[i].GetComponent<Zumbai>().JumpHold();
                         break;
                     case Jump.JumpRelease:
-                        zumbai.GetComponent<Zumbai>().JumpRelease();
+                        zumbaiActiveList[i].GetComponent<Zumbai>().JumpRelease();
                         yield return new WaitForSeconds(0);
                         break;
                 }
-                yield return new WaitForSeconds(jumpDelay);
+                yield return new WaitForSeconds(jumpDelay / zumbaiActiveList.Count);
             }
+            //foreach (GameObject zumbai in zumbaiActiveList)
+            //{
+            //    switch (jump)
+            //    {
+            //        default:
+            //        case Jump.JumpPress:
+            //            zumbai.GetComponent<Zumbai>().JumpPress();
+            //            break;
+            //        case Jump.JumpHold:
+            //            zumbai.GetComponent<Zumbai>().JumpHold();
+            //            break;
+            //        case Jump.JumpRelease:
+            //            zumbai.GetComponent<Zumbai>().JumpRelease();
+            //            yield return new WaitForSeconds(0);
+            //            break;
+            //    }
+            //    yield return new WaitForSeconds(jumpDelay / zumbaiActiveList.Count);
+            //}
     }
 
     public void NewGame()

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  jumpForce: 1200
+  jumpForce: 1250
   defaultDrag: 0
   onHoldDrag: 7
   jumpCheck: 3

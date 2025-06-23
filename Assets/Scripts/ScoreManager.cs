@@ -34,7 +34,6 @@ public class ScoreManager : MonoBehaviour
         totalTime = 0;
         startTime = Time.realtimeSinceStartup;
         OnCandyChanged?.Invoke(this, EventArgs.Empty);
-        Debug.Log(startTime);
     }
 
     private void Update()

@@ -119,14 +119,6 @@ public class Zumbai : MonoBehaviour
     {
         RaycastHit hit;
         isGrounded = Physics.Raycast(transform.position, Vector3.down,out hit, jumpCheck);
-        if (isGrounded)
-        {
-            Zumbai zumbai = hit.collider.GetComponentInParent<Zumbai>();
-            if(zumbai != null)
-            {
-                rb.AddForce(Vector3.left * 20f);
-            }
-        }
     }
 
     public void JumpPress()
@@ -154,7 +146,7 @@ public class Zumbai : MonoBehaviour
         GetComponentInChildren<CapsuleCollider>().isTrigger = true;
 
         ZumbaiManager.Instance.RemoveZumbai(this.gameObject);
-        StartCoroutine(ResetAfterFall(2f));
+        StartCoroutine(ResetAfterFall(1.5f));
 
     }
 

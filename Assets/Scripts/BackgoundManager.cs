@@ -13,8 +13,6 @@ public class BackgoundManager : MonoBehaviour
     [SerializeField] private List<GameObject> itemPool;
     [SerializeField] private float accelerationTimer = 0f;
     [SerializeField] private float accelerationTimerMax = 6f;
-    [SerializeField] private float accelerationHouseTimer = 0f;
-    [SerializeField] private float accelerationHouseTimerMax = 4f;
 
     private void Awake()
     {
@@ -32,7 +30,6 @@ public class BackgoundManager : MonoBehaviour
     private void Update()
     {
         accelerationTimer -= Time.deltaTime;
-        accelerationHouseTimer -= Time.deltaTime;
         if (accelerationTimer <= 0f)
         {
             accelerationTimer = accelerationTimerMax;

@@ -570,7 +570,7 @@ MonoBehaviour:
   zumbaiPool: []
   zumbaiActiveList: []
   zumbaiPref: {fileID: 620461241813115672, guid: 3e90718beda68944ab9bd6864a8ffd5f, type: 3}
-  jumpDelay: 0.1
+  jumpDelay: 0.25
   centerOfBoids: {fileID: 733968976}
 --- !u!4 &508815065
 Transform:
@@ -2776,8 +2776,6 @@ MonoBehaviour:
   itemPool: []
   accelerationTimer: 0
   accelerationTimerMax: 10
-  accelerationHouseTimer: 0
-  accelerationHouseTimerMax: 4
 --- !u!1 &1419556702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3994,7 +3992,6 @@ MonoBehaviour:
   gameSpeed: 10
   defaultGameSpeed: 10
   scaleTimeCount: 0
-  timeScaleUp: 0.5
 --- !u!4 &1872330416
 Transform:
   m_ObjectHideFlags: 0
