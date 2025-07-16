@@ -8,6 +8,8 @@ public class Zumbai : MonoBehaviour
 {
 
     private Rigidbody rb;
+    [SerializeField] private GameObject zumbaiSkin;
+    [SerializeField] private Animator animator;
     [SerializeField] private bool isGrounded;
     [SerializeField] private float jumpForce = 500f;
     [SerializeField] private float defaultDrag = 1;
@@ -22,6 +24,13 @@ public class Zumbai : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Instantiate(zumbaiSkin, transform);
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Update()
+    {
+       
     }
 
     private void FixedUpdate()
@@ -30,6 +39,10 @@ public class Zumbai : MonoBehaviour
         if (isGrounded)
         {
             HandleBoidsMovement();
+            animator.SetBool("IsGround", true);
+        } else
+        {
+            animator.SetBool("IsGround", false);
         }
     }
 
