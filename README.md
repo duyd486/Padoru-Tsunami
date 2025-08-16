@@ -52,8 +52,8 @@
 ### Clone repo
 
 ```bash
-git clone https://github.com/duyd486/Tsunami.git
+git clone https://github.com/duyd486/Padoru-Tsunami.git
 ```
 ### Mở trong Unity
-- Mở Unity Hub → "Open Project" → Chọn thư mục Tsunami
+- Mở Unity Hub → "Open Project" → Chọn thư mục Padoru-Tsunami
 - Nhấn Play để chạy game thử
