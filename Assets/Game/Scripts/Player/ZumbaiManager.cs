@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class ZumbaiManager : MonoBehaviour
 {
@@ -41,6 +39,7 @@ public class ZumbaiManager : MonoBehaviour
 
         zumbaiPool = new List<GameObject>();
         zumbaiActiveList = new List<GameObject>();
+        AddZumbai(5);
     }
 
     private void GameManager_OnGameStart(object sender, EventArgs e)
@@ -87,7 +86,7 @@ public class ZumbaiManager : MonoBehaviour
         SortZumbai();
         if (!GameManager.Instance.GetIsPlaying()) yield return false;
         else
-            for(int i = 0; i < zumbaiActiveList.Count; i++)
+            for (int i = 0; i < zumbaiActiveList.Count; i++)
             {
                 switch (jump)
                 {
@@ -105,29 +104,29 @@ public class ZumbaiManager : MonoBehaviour
                 }
                 yield return new WaitForSeconds(jumpDelay / zumbaiActiveList.Count);
             }
-            //foreach (GameObject zumbai in zumbaiActiveList)
-            //{
-            //    switch (jump)
-            //    {
-            //        default:
-            //        case Jump.JumpPress:
-            //            zumbai.GetComponent<Zumbai>().JumpPress();
-            //            break;
-            //        case Jump.JumpHold:
-            //            zumbai.GetComponent<Zumbai>().JumpHold();
-            //            break;
-            //        case Jump.JumpRelease:
-            //            zumbai.GetComponent<Zumbai>().JumpRelease();
-            //            yield return new WaitForSeconds(0);
-            //            break;
-            //    }
-            //    yield return new WaitForSeconds(jumpDelay / zumbaiActiveList.Count);
-            //}
+        //foreach (GameObject zumbai in zumbaiActiveList)
+        //{
+        //    switch (jump)
+        //    {
+        //        default:
+        //        case Jump.JumpPress:
+        //            zumbai.GetComponent<Zumbai>().JumpPress();
+        //            break;
+        //        case Jump.JumpHold:
+        //            zumbai.GetComponent<Zumbai>().JumpHold();
+        //            break;
+        //        case Jump.JumpRelease:
+        //            zumbai.GetComponent<Zumbai>().JumpRelease();
+        //            yield return new WaitForSeconds(0);
+        //            break;
+        //    }
+        //    yield return new WaitForSeconds(jumpDelay / zumbaiActiveList.Count);
+        //}
     }
 
     public void NewGame()
     {
-        foreach(GameObject zumbai in zumbaiPool)
+        foreach (GameObject zumbai in zumbaiPool)
         {
             zumbai.SetActive(false);
         }
@@ -143,7 +142,7 @@ public class ZumbaiManager : MonoBehaviour
     public void AddZumbai(float fallHeight = 40)
     {
         GameObject zumbaiOb = GetPooledObject();
-        zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0, fallHeight, UnityEngine.Random.Range(-2,2));
+        zumbaiOb.transform.position = centerOfBoids.position + new Vector3(0, fallHeight, UnityEngine.Random.Range(-2, 2));
         zumbaiOb.SetActive(true);
         zumbaiActiveList.Add(zumbaiOb);
         OnZumbaiChanged?.Invoke(this, EventArgs.Empty);

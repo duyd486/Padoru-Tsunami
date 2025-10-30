@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zumbaiSkin: {fileID: 2711685067913366902, guid: e9670f0aaa512464c94dc55a24d49346, type: 3}
+  animator: {fileID: 0}
   isGrounded: 0
   jumpForce: 1250
   defaultDrag: 0
