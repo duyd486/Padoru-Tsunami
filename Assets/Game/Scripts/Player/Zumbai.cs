@@ -76,7 +76,7 @@ public class Zumbai : MonoBehaviour
         }
         steer += cohesion * 0.07f;
         steer += alignment * 0.037f;
-        rb.velocity += steer * gravityScale;
+        rb.linearVelocity += steer * gravityScale;
     }
 
     private List<GameObject> GetNeighbors()
@@ -136,7 +136,7 @@ public class Zumbai : MonoBehaviour
 
     public void JumpPress()
     {
-        rb.drag = defaultDrag;
+        rb.linearDamping = defaultDrag;
         if (isGrounded)
         {
             rb.AddForce(new Vector3(0, jumpForce));
@@ -144,11 +144,11 @@ public class Zumbai : MonoBehaviour
     }
     public void JumpHold()
     {
-        rb.drag = onHoldDrag;
+        rb.linearDamping = onHoldDrag;
     }
     public void JumpRelease()
     {
-        rb.drag = defaultDrag;
+        rb.linearDamping = defaultDrag;
         rb.AddForce(new Vector3(0, -jumpForce / 5));
     }
 

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class House : MonoBehaviour
@@ -15,7 +12,6 @@ public class House : MonoBehaviour
             house.transform.position = new Vector3(transform.position.x + 200, 2, 15);
             house.GetComponent<House>().Respawn();
             house.SetActive(true);
-            Debug.Log(house);
         }
     }
     public void Respawn()
