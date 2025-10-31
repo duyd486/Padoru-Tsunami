@@ -11896,7 +11896,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3691142025322119165}
-  - {fileID: 4261798446851617146}
   - {fileID: 5874206482598556142}
   - {fileID: 3143991750275003049}
   m_Father: {fileID: 7551906039046346159}
@@ -15156,37 +15155,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3556947736703899199}
   m_Enabled: 1
---- !u!1 &7502127778126036827
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4261798446851617146}
-  m_Layer: 0
-  m_Name: Wall_Door_03_Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4261798446851617146
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7502127778126036827}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 554647535290215097}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7512451658460577260
 GameObject:
   m_ObjectHideFlags: 0
